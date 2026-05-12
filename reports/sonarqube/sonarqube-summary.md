@@ -1,9 +1,9 @@
 # SonarQube Summary
 
-Dummy report output for repository scaffolding.
-
-- Bugs: 0
+- Bugs: 1
 - Vulnerabilities: 0
-- Code Smells: 0
-- Duplicated Lines: 0%
+- Code Smells: 8
+- Duplicated Lines: 0.9%
+- Security Hotspots: 1
+- Coverage: 82.6%
 - Quality Gate: Passed
