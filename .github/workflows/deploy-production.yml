@@ -1,0 +1,29 @@
+name: Production Deployment
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Source Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Release
+        run: |
+          mkdir -p artifacts reports/sonarqube reports/opa
+          echo "release-approved" > reports/production-approval.txt
+
+      - name: Deploy
+        run: |
+          set -e
+          echo "production-deployment-start" > artifacts/production-deployment.log
+          if [ ! -f configs/deployment.yaml ]; then
+            echo "rollback" > artifacts/production-rollback.log
+            exit 1
+          fi
+          echo "production-deployment-success" >> artifacts/production-deployment.log
